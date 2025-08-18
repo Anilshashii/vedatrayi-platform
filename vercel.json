@@ -1,22 +1,30 @@
 {
-  "build": {
-    "env": {
-      "NODE_ENV": "production"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build"
     }
-  },
+  ],
   "routes": [
     {
-      "src": "/[^.]+$|\\.(?!html$)(?!/)",
+      "src": "/[^.]+$",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/(.*)\\.js$",
+      "dest": "/$1.js"
+    },
+    {
+      "src": "/(.*)\\.css$",
+      "dest": "/$1.css"
+    },
+    {
+      "src": "/(.*)",
       "dest": "/index.html"
     }
   ],
   "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
-  ],
-  "redirects": [
     {
       "source": "/(.*)",
       "destination": "/index.html"
